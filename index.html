@@ -41,6 +41,12 @@
             width: auto; /* Ajusta a largura do título ao conteúdo */
             overflow: hidden; /* Evita quebra de linha */
         }
+        #descricaoCulto {
+            font-size: 3vw;
+            margin-top: 5px;
+            text-align: center;
+            color: gray;
+        }
         .fields {
             margin-top: 20px;
             width: 100%;
@@ -58,6 +64,9 @@
         @media (min-width: 768px) {
             #nomeCulto {
                 font-size: 24px;
+            }
+            #descricaoCulto {
+                font-size: 16px;
             }
             .fields p {
                 font-size: 18px;
@@ -99,7 +108,8 @@
 <body>
     <div class="card" id="contentToCopy">
         <img src="proxculto1.jpg" alt="Próximo Culto">
-        <p id="nomeCulto"></p>
+        <p id="nomeCulto"><strong></strong></p>
+        <p id="descricaoCulto"></p> <!-- Nova linha para a descrição -->
         <div class="fields">
             <p><span class="emoji">💻</span> - <span id="pc"></span></p>
             <p><span class="emoji">🎥</span> - <span id="cam1"></span></p>
@@ -114,18 +124,10 @@
     <button class="floating-btn floating-btn-eye" onclick="window.location.href='escala-online.html'">👁</button> <!-- Botão de olhinho -->
     <button class="floating-btn" onclick="copyText()">&#10148;</button> <!-- Botão de enviar -->
 
-
-
-
-
-
-
-
-
-
     <script>
         // Definindo variáveis com o conteúdo de cada campo
         const nomeCulto = "CULTO DE DOUTRINA - 19h";
+        const descricaoCulto = "Sexta-feira | 13/09"; // Nova variável
         const pc = "LUCAS";
         const cam1 = "DANILO";
         const cam2 = "JOAO";
@@ -135,15 +137,9 @@
 
 
 
-
-
-
-
-
-
-
         // Atribuindo os valores ao HTML
-        document.getElementById('nomeCulto').textContent = nomeCulto;
+        document.getElementById('nomeCulto').innerHTML = `<strong>${nomeCulto}</strong>`;
+        document.getElementById('descricaoCulto').textContent = descricaoCulto; // Atribuindo a descrição
         document.getElementById('pc').textContent = pc;
         document.getElementById('cam1').textContent = cam1;
         document.getElementById('cam2').textContent = cam2;
