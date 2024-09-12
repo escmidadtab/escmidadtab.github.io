@@ -4,85 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Próximo Culto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        :root {
+            --background-color-light: #f0f0f0;
+            --card-background-color-light: #ffffff;
+            --text-color-light: #333;
+            --accent-color-light: #4CAF50;
+
+            --background-color-dark: #1a1a1a;
+            --card-background-color-dark: #2e2e2e;
+            --text-color-dark: #e0e0e0;
+            --accent-color-dark: #45a049;
+        }
+
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            overflow: hidden; /* Evita barras de rolagem horizontais */
+            background-color: var(--background-color-light);
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
         }
+
         .card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            max-width: 100%; /* Ajusta a largura máxima para 100% */
+            background-color: var(--card-background-color-light);
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            max-width: 100%;
+            min-width: 350px;
+            width: auto;
             box-sizing: border-box;
-            white-space: nowrap; /* Impede quebra de linha no texto */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
+
         img {
             width: 100%;
             height: auto;
-            max-width: 350px; /* Ajusta a largura máxima da imagem */
+            max-width: 350px;
             border-radius: 10px;
         }
+
         #nomeCulto {
             font-size: 5vw;
             margin-top: 20px;
             text-align: center;
-            width: auto; /* Ajusta a largura do título ao conteúdo */
-            overflow: hidden; /* Evita quebra de linha */
+            font-weight: 700;
+            color: var(--text-color-light);
+            white-space: nowrap;
+            overflow: hidden;
         }
+
         #descricaoCulto {
             font-size: 3vw;
             margin-top: 5px;
             text-align: center;
             color: gray;
         }
+
         .fields {
             margin-top: 20px;
             width: 100%;
             max-width: 350px;
         }
+
         .fields p {
             font-size: 4vw;
             margin: 10px 0;
             text-align: left;
             padding-left: 20px;
+            color: var(--text-color-light);
         }
+
         .emoji {
             font-size: 5vw;
         }
+
         @media (min-width: 768px) {
             #nomeCulto {
                 font-size: 24px;
             }
+
             #descricaoCulto {
                 font-size: 16px;
             }
+
             .fields p {
                 font-size: 18px;
             }
+
             .emoji {
                 font-size: 24px;
             }
         }
-        /* Estilos para os botões flutuantes */
+
+        /* Botões flutuantes */
         .floating-btn {
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            right: 20px; /* Alinhado à direita */
             width: 60px;
             height: 60px;
-            background-color: #4CAF50;
             color: white;
             border-radius: 50%;
             border: none;
@@ -90,26 +120,76 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
             font-size: 24px;
         }
+
         .floating-btn:hover {
-            background-color: #45a049;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.25);
         }
-        .floating-btn-eye {
-            bottom: 100px;
-            background-color: #008CBA;
+
+        .floating-btn-copy {
+            background-color: #3498db; /* Azul profissional */
+            margin-bottom: 70px; /* Espaço para o botão verde não sobrepor */
         }
-        .floating-btn-eye:hover {
-            background-color: #007bb5;
+
+        .floating-btn-copy:hover {
+            background-color: #2980b9;
+        }
+
+        .floating-btn-send {
+            background-color: #27ae60; /* Verde profissional */
+        }
+
+        .floating-btn-send:hover {
+            background-color: #229954;
+        }
+
+        /* Botão de alternar tema */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #ddd;
+            color: #333;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: #ccc;
+        }
+
+        /* Tema escuro */
+        body.dark-mode {
+            background-color: var(--background-color-dark);
+        }
+
+        body.dark-mode .card {
+            background-color: var(--card-background-color-dark);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode #nomeCulto,
+        body.dark-mode .fields p {
+            color: var(--text-color-dark);
         }
     </style>
 </head>
-<body>
+<body onload="loadTheme()">
+    <!-- Botão de alternar tema -->
+    <button class="theme-toggle-btn" onclick="toggleTheme()">🌗</button>
+
     <div class="card" id="contentToCopy">
         <img src="proxculto1.jpg" alt="Próximo Culto">
         <p id="nomeCulto"><strong></strong></p>
-        <p id="descricaoCulto"></p> <!-- Nova linha para a descrição -->
+        <p id="descricaoCulto"></p>
         <div class="fields">
             <p><span class="emoji">💻</span> - <span id="pc"></span></p>
             <p><span class="emoji">🎥</span> - <span id="cam1"></span></p>
@@ -121,13 +201,13 @@
     </div>
 
     <!-- Botões flutuantes -->
-    <button class="floating-btn floating-btn-eye" onclick="window.location.href='escala-online.html'">👁</button> <!-- Botão de olhinho -->
-    <button class="floating-btn" onclick="copyText()">&#10148;</button> <!-- Botão de enviar -->
+    <button class="floating-btn floating-btn-copy" onclick="window.location.href='escala-online.html'">📋</button>
+    <button class="floating-btn floating-btn-send" onclick="copyText()">📤</button>
 
     <script>
         // Definindo variáveis com o conteúdo de cada campo
         const nomeCulto = "CULTO DE DOUTRINA - 19h";
-        const descricaoCulto = "Sexta-feira | 13/09"; // Nova variável
+        const descricaoCulto = "Sexta-feira | 13/09";
         const pc = "LUCAS";
         const cam1 = "DANILO";
         const cam2 = "JOAO";
@@ -135,11 +215,9 @@
         const reporter = "";
         const fotos = "ESTER";
 
-
-
         // Atribuindo os valores ao HTML
         document.getElementById('nomeCulto').innerHTML = `<strong>${nomeCulto}</strong>`;
-        document.getElementById('descricaoCulto').textContent = descricaoCulto; // Atribuindo a descrição
+        document.getElementById('descricaoCulto').textContent = descricaoCulto;
         document.getElementById('pc').textContent = pc;
         document.getElementById('cam1').textContent = cam1;
         document.getElementById('cam2').textContent = cam2;
@@ -164,6 +242,27 @@ ________________________________
             }, function(err) {
                 alert("Erro ao copiar o texto: " + err);
             });
+        }
+
+        // Função para alternar entre temas claro e escuro
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            // Salva a preferência do usuário no localStorage
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Carrega a preferência de tema do localStorage
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
         }
     </script>
 </body>
