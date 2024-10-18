@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="estilo.css">
     <script>
         // Definindo variáveis com o conteúdo de cada campo
-        const nomeCulto = "CULTO DE DOUTRINA - 19h";
-        const descricaoCulto = "Sexta-feira | 18/10";
-        const pc = "WILIAN";
+        const arte = 'ceia.jpg'; // Variável para a arte do culto
+        const nomeCulto = "SANTA CEIA - 19h";
+        const descricaoCulto = "Sexta-feira | 04/10";
+        const pc = "ISAAC";
         const cam1 = "SAMUEL S";
         const cam2 = "SAMUEL F";
-        const storys = "INGRID";
+        const storys = "DAIRANE";
         const reporter = "";
-        const fotos = "DUDA";
+        const fotos = "INGRID";
 
         // Atribuindo os valores ao HTML
         function populateFields() {
@@ -26,6 +27,7 @@
             document.getElementById('storys').textContent = storys;
             document.getElementById('reporter').textContent = reporter;
             document.getElementById('fotos').textContent = fotos;
+            document.getElementById('imagemCulto').src = arte; // Usando a variável arte
         }
 
         // Função para copiar o texto formatado para a área de transferência
@@ -61,13 +63,13 @@ ________________________________
             left: 50%; /* Centraliza horizontalmente */
             transform: translateX(-50%); /* Ajusta a posição horizontal */
             z-index: 1000; /* Garante que a imagem fique acima de outros elementos */
-            bottom: 20px; /* Distância da borda inferior */
+            bottom: 40px; /* Distância da borda inferior - Aumentada para 40px */
         }
 
         /* Estilo específico para desktop */
         @media (min-width: 768px) {
             .footer-image {
-                bottom: 20px; /* Aumenta a distância da imagem para a borda inferior */
+                bottom: 40px; /* Aumenta a distância da imagem para a borda inferior */
                 max-width: 20%;
             }
             .logo-desktop {
@@ -83,11 +85,12 @@ ________________________________
         /* Estilo específico para mobile */
         @media (max-width: 767px) {
             .footer-image {
-                bottom: 40px; /* Ajusta a distância da borda inferior */
-                max-width: 70%; /* Diminuindo o tamanho da imagem no mobile */
+                bottom: 0px; /* Ajusta a distância da borda inferior */
+                max-width: 65%; /* Diminuindo o tamanho da imagem no mobile */
                 position: absolute; /* Mantém a posição absoluta para centralização */
                 left: 50%; /* Centraliza horizontalmente */
                 transform: translateX(-50%); /* Ajusta a posição horizontal */
+                margin-top: 80x; /* Adiciona um espaço de 60px acima da imagem */
             }
             .logo-desktop {
                 display: none; /* Esconde a logo desktop no mobile */
@@ -136,7 +139,7 @@ ________________________________
         <div class="card-container">
             <img src="logo.png" alt="Logo" class="logo-desktop"> <!-- Logo desktop -->
             <div class="card">
-                <img src="doutrina.jpg" alt="Imagem do Culto">
+                <img id="imagemCulto" src="" alt="Imagem do Culto"> <!-- Usando a variável arte -->
                 <div class="card-content">
                     <div class="fields">
                         <h1 id="nomeCulto">Nome do Culto</h1>
