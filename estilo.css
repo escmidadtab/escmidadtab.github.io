@@ -1,0 +1,267 @@
+:root {
+    --background-color-dark: #061207;
+    --card-background-color-dark: #29524a;
+    --text-color-light: #ffffff;
+    --description-color: gray;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color-dark);
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.card {
+    display: flex;
+    background-color: var(--card-background-color-dark);
+    padding: 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.card img {
+    width: 45%;
+    height: auto;
+    border-radius: 15px 0 0 15px;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 16 / 9;
+    margin-left: -20px;
+    margin-right: 30px;
+    position: relative;
+    z-index: 1;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    animation: slideIn 0.8s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.card-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#nomeCulto {
+    font-size: 3.5vw; /* Aumentar tamanho da fonte do nome do culto */
+    font-weight: 700;
+    color: var(--text-color-light);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#descricaoCulto {
+    font-size: 2.5vw; /* Aumentar tamanho da fonte da descrição */
+    color: var(--description-color);
+    margin-top: 5px;
+}
+
+.fields {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.fields p {
+    font-size: 3vw; /* Aumentar tamanho da fonte dos campos no mobile */
+    margin: 5px 0;
+    color: var(--text-color-light);
+}
+
+.emoji {
+    font-size: 2vw;
+}
+
+/* Estilo dos botões flutuantes */
+.floating-buttons {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    background-color: #007bff; /* Azul padrão */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    z-index: 999;
+}
+
+.button.copy {
+    background-color: #28a745; /* Verde para o botão 'copy' */
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+/* Estilo para a imagem name.png como footer */
+.footer-image {
+    display: block; 
+    margin: 0 auto; 
+    max-width: 90%; /* Diminuindo um pouco o tamanho da imagem */
+    height: auto; 
+    position: fixed; /* Fixa a imagem na parte inferior da página */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta a posição horizontal */
+    z-index: 1000; /* Garante que a imagem fique acima de outros elementos */
+}
+
+/* Estilo específico para desktop */
+@media (min-width: 768px) {
+    .footer-image {
+        bottom: 20px; /* Aumenta a distância da imagem para a borda inferior */
+        max-width: 20%;
+    }
+}
+
+/* Estilo específico para mobile */
+@media (max-width: 767px) {
+    .footer-image {
+        bottom: 35px; /* Move a imagem um pouco mais para cima */
+        max-width: 70%; /* Diminuindo o tamanho da imagem no mobile */
+    }
+}
+
+@media (min-width: 768px) {
+    #nomeCulto {
+        font-size: 24px;
+    }
+
+    #descricaoCulto {
+        font-size: 16px;
+    }
+
+    .fields p {
+        font-size: 18px;
+    }
+
+    .emoji {
+        font-size: 24px;
+    }
+
+    .button.view::before {
+        content: "Visualizar Escala";
+    }
+
+    .button.copy::before {
+        content: "Copiar";
+    }
+
+    .floating-buttons {
+        top: 10px; /* Distância do topo do card */
+        right: 10px; /* Distância da direita do card */
+    }
+}
+
+/* Estilo para o mobile */
+@media (max-width: 767px) {
+    body {
+        flex-direction: column;
+        justify-content: flex-start; /* Mover o card para o topo da página */
+        align-items: flex-start; /* Garantir alinhamento adequado */
+    }
+
+    /* Mover botões flutuantes para a parte inferior direita do card */
+    .floating-buttons {
+        bottom: 10px; /* Distância do fundo do card */
+            right: 10px; /* Distância da direita do card */
+    }
+
+    .container {
+        justify-content: flex-start; /* Mover o container para o topo */
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .card {
+        flex-direction: column;
+        width: 100%;
+        max-width: none;
+        margin-top: 0; /* remove espaço entre o card e o topo */
+        position: relative; /* Manter posição relativa */
+        background-color: #29524a; /* Alterar cor do card */
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 15px 15px 0 0;
+        margin: 0;
+    }
+
+    /* Centralizar os dois primeiros campos */
+    .fields {
+        align-items: center;
+        text-align: center;
+    }
+
+    #nomeCulto {
+        font-size: 6vw; /* Nome do culto maior que os demais campos */
+    }
+
+    .fields p {
+        font-size: 4vw; /* Aumentar tamanho do texto dos campos */
+        color: var(--text-color-light); /* Cor branca para o texto */
+    }
+
+    #descricaoCulto {
+        font-size: 4vw; /* Aumentar tamanho da descrição */
+        color: var(--description-color); /* Manter cor cinza na descrição */
+    }
+
+    /* Aumentar o tamanho dos emojis no mobile para ficar do tamanho do texto */
+    .emoji {
+        font-size: 4vw; /* Ajuste no tamanho do emoji para o tamanho da fonte */
+    }
+
+    /* A partir do terceiro campo (pc em diante), alinhar à esquerda */
+    .fields p:nth-child(n+3) {
+        align-self: flex-start;
+        text-align: left;
+        padding-left: 20px; /* Adicionar espaçamento para o alinhamento à esquerda */
+    }
+
+    .button.view::before {
+        content: "📤"; /* Emoji de enviar no botão view */
+    }
+
+    .button.copy::before {
+        content: "📋"; /* Emoji de copiar no botão copy */
+    }
+}
