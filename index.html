@@ -6,8 +6,8 @@
     <title>Próximo Culto</title>
     <link rel="stylesheet" href="estilo.css">
     <script>
-        // Definindo variáveis com o conteúdo de cada campo
-        const arte = 'cultos/missao.jpg'; // Variável para a arte do culto
+        //definindo variaveis com conteudos do campo no inicio do codigo (facilitei minha edição)
+        const arte = 'cultos/missao.jpg'; // cultos/nome.x
         const nomeCulto = "CULTO DE MISSÕES - 18h";
         const descricaoCulto = "Domingo | 08/12";
         const pc = "DAVID M";
@@ -17,7 +17,7 @@
         const reporter = "DIEGO";
         const fotos = "ALDO";
 
-        // Atribuindo os valores ao HTML
+        //atribui os valores das consts acima ao html
         function populateFields() {
             document.getElementById('nomeCulto').innerHTML = `<strong>${nomeCulto}</strong>`;
             document.getElementById('descricaoCulto').textContent = descricaoCulto;
@@ -27,10 +27,10 @@
             document.getElementById('storys').textContent = storys;
             document.getElementById('reporter').textContent = reporter;
             document.getElementById('fotos').textContent = fotos;
-            document.getElementById('imagemCulto').src = arte; // Usando a variável arte
+            document.getElementById('imagemCulto').src = arte; // usando arte como .src 
         }
 
-        // Função para copiar o texto formatado para a área de transferência
+        // função basiquinha pra copiar o texto
         function copyText() {
             const formattedText = `*${nomeCulto}*
 ________________________________
@@ -49,27 +49,27 @@ ________________________________
             });
         }
 
-        // Chamando a função para preencher os campos ao carregar a página
+        // preencher os campos quando carregar a tela
         window.onload = populateFields;
     </script>
     <style>
-        /* Estilo para a imagem name.png como footer */
+        /* imagem name.png como footer */
         .footer-image {
             display: block; 
             margin: 0 auto; 
-            max-width: 90%; /* Diminuindo um pouco o tamanho da imagem */
+            max-width: 90%;
             height: auto; 
-            position: absolute; /* Muda para posição absoluta */
-            left: 50%; /* Centraliza horizontalmente */
-            transform: translateX(-50%); /* Ajusta a posição horizontal */
-            z-index: 1000; /* Garante que a imagem fique acima de outros elementos */
-            bottom: 40px; /* Distância da borda inferior - Aumentada para 40px */
+            position: absolute; 
+            left: 50%;
+            transform: translateX(-50%); /* ajusta a posição horizontal */
+            z-index: 1000; /* garante que a imagem fique acima de outros elementos */
+            bottom: 40px;
         }
 
-        /* Estilo específico para desktop */
+        /* específico para desktop */
         @media (min-width: 768px) {
             .footer-image {
-                bottom: 40px; /* Aumenta a distância da imagem para a borda inferior */
+                bottom: 40px; 
                 max-width: 20%;
             }
             .logo-desktop {
@@ -82,39 +82,39 @@ ________________________________
             }
         }
 
-        /* Estilo específico para mobile */
+        /* específico para mobile */
         @media (max-width: 767px) {
             .footer-image {
-                bottom: 0px; /* Ajusta a distância da borda inferior */
-                max-width: 65%; /* Diminuindo o tamanho da imagem no mobile */
-                position: absolute; /* Mantém a posição absoluta para centralização */
-                left: 50%; /* Centraliza horizontalmente */
-                transform: translateX(-50%); /* Ajusta a posição horizontal */
-                margin-top: 80x; /* Adiciona um espaço de 60px acima da imagem */
+                bottom: 0px; 
+                max-width: 65%; 
+                position: absolute; 
+                left: 50%; /* centraliza horizontalmente */
+                transform: translateX(-50%); /* ajusta a posição horizontal */
+                margin-top: 80x; /* adiciona um espaço de 60px acima da imagem */
             }
             .logo-desktop {
-                display: none; /* Esconde a logo desktop no mobile */
+                display: none; 
             }
             .logo-mobile {
-                max-width: 10%; /* Reduzindo o tamanho da logo no mobile */
-                display: block; /* Mostra a logo mobile */
-                margin: 2px; /* Adiciona espaço entre a logo mobile e o card */
-                position: absolute; /* Torna a logo flutuante */
-                top: 15px; /* Ajuste a distância do topo da logo mobile */
-                left: 50%; /* Centraliza horizontalmente */
-                transform: translateX(-50%); /* Ajusta a posição horizontal */
-                z-index: 10; /* Assegura que a logo apareça acima do card */
+                max-width: 10%;
+                display: block; 
+                margin: 2px; 
+                position: absolute; 
+                top: 15px; 
+                left: 50%; 
+                transform: translateX(-50%); 
+                z-index: 10; 
             }
         }
 
-        /* Alinhamento do card e logo */
+        /* alinhamento do card e logo */
         .card-container {
             display: flex;
-            justify-content: center; /* Centraliza horizontalmente o card */
-            align-items: center; /* Alinha logo e card ao centro */
+            justify-content: center; 
+            align-items: center; 
             width: 100%;
-            padding: 60px 0; /* Ajuste o padding superior para centralizar verticalmente */
-            position: relative; /* Permite posicionar elementos filhos */
+            padding: 60px 0; 
+            position: relative; 
         }
 
         .card {
@@ -129,17 +129,17 @@ ________________________________
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
-            margin-top: 40px; /* Espaço entre a logo e o card */
+            margin-top: 40px; /* espaço entre a logo e o card */
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container"> <!-- FINALMENTE CHEGAMOS NO CODIGO HTML KKKKKKKKKKKKKKK -->
         <div class="card-container">
-            <img src="cultos/logo.png" alt="Logo" class="logo-desktop"> <!-- Logo desktop -->
+            <img src="cultos/logo.png" alt="Logo" class="logo-desktop"> <!-- logo desktop -->
             <div class="card">
-                <img id="imagemCulto" src="" alt="Imagem do Culto"> <!-- Usando a variável arte -->
+                <img id="imagemCulto" src="" alt="Imagem do Culto"> <!-- usando a variável arte -->
                 <div class="card-content">
                     <div class="fields">
                         <h1 id="nomeCulto">Nome do Culto</h1>
@@ -153,17 +153,17 @@ ________________________________
                     </div>
                 </div>
 
-                <!-- Botões flutuantes -->
+                <!-- botoes flutuantes -->
                 <div class="floating-buttons">
                     <button class="button view" onclick="window.open('escala-online.html', '_self')"></button>
                     <button class="button copy" onclick="copyText()"></button>
                 </div>
             </div>
         </div>
-        <img src="cultos/logo.png" alt="Logo" class="logo-mobile"> <!-- Logo no mobile -->
+        <img src="cultos/logo.png" alt="Logo" class="logo-mobile"> <!-- logo no mobile -->
     </div>
 
-    <!-- Imagem name.png como footer -->
+    <!-- imagem name.png como footer -->
     <img src="name.png" alt="Nome" class="footer-image">
 
 </body>
