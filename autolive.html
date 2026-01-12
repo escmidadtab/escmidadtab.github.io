@@ -6,11 +6,22 @@
 </head>
 <body>
 <h3>Iniciando AutoLive...</h3>
+<p>Se esta aba não fechar automaticamente, você pode fechá-la.</p>
 
 <script>
-  // pequeno delay só pra garantir render
   setTimeout(() => {
-    window.location.href = "autolive://start"
+    try {
+      // dispara o protocolo
+      window.location.href = "autolive://start"
+
+      // tenta fechar a aba após 1s
+      setTimeout(() => {
+        window.close()
+      }, 1000)
+
+    } catch (e) {
+      console.error(e)
+    }
   }, 300)
 </script>
 
